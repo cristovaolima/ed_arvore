@@ -59,7 +59,7 @@ void tinsert(struct tnode **R, struct tnode *n){
 struct tnode* search(struct tnode *R, int v){
 	if(R != NULL){
 		if(R->v == v)
-		 return v;
+		 return R;
 		if(R->v > v)
 			return search(R->l, v);
 		return search(R->r, v); 
