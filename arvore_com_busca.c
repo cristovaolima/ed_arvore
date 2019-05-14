@@ -10,6 +10,7 @@ struct tnode * new_tnode(int v);
 void tprint(struct tnode *r);
 void tinsert(struct tnode **R, struct tnode *n);
 struct tnode* search(struct tnode *R, int v);
+void rd(struct tnode * x);
 
 struct tnode{
 	int v;
@@ -65,6 +66,30 @@ struct tnode* search(struct tnode *R, int v){
 		return search(R->r, v); 
 	}
 	return NULL;
+}
+
+void avl(struct tnode *R, int w){
+	v = w.p;
+	while(v != ){
+		
+	}
+}
+
+void rd(struct tnode * x){
+	struct tnode *y = x->e;
+	struct tnode *c = y->d;
+	x->e = c;
+	y->d = x;
+	y->p = x->p;
+	x-> = y;
+	if(c != NULL)
+		c->p = x;
+	if(y-> != NULL){
+		if(y->pv > x->v)
+			y->p->c = y;
+		else
+			y->p->d = y;
+	}
 }
 
 
