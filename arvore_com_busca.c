@@ -100,9 +100,9 @@ int tamanhoArvore(struct tnode *r){
 
 void tprint(struct tnode *r){
 	if(r != NULL){
-		tprint(r->l);
-		printf("%d ", r->v);
 		tprint(r->r);
+		printf("%d ", r->v);
+		tprint(r->l);
 	}
 }
 
