@@ -5,12 +5,17 @@
 #include <conio.h>
 #include <math.h>
 #include <locale.h>
+#include <string.h>
+
+#define tamanho 100
 
 struct tnode * new_tnode(int v);
 void tprint(struct tnode *r);
 void tinsert(struct tnode **R, struct tnode *n);
 struct tnode* search(struct tnode *R, int v);
 void rd(struct tnode * x);
+int tamanhoArvore(struct tnode *r);
+void preencherArvore(struct tnode **R);
 
 struct tnode{
 	int v;
@@ -19,13 +24,16 @@ struct tnode{
 };
 
 int main(int argc, char **argv){
+	setlocale(LC_ALL, "Portuguese");
 	struct tnode *R = NULL;
 	/* //Inserir manual
 	R = new_tnode(4);
 	R->l = new_tnode(2);
 	R->r = new_tnode(6);
 	(R->l)->l = new_tnode(1);*/
-	tinsert(&R, new_tnode(19));
+	//tinsert(&R, new_tnode(19));
+	preencherArvore(&R);
+	printf("Numero de nos: %d\n\n", tamanhoArvore(R));
 	tprint(R);	
 	return 0;
 }
@@ -36,14 +44,6 @@ struct tnode * new_tnode(int v){
 		w->l = NULL;
 		w->r = NULL;
 		return w;
-}
-
-void tprint(struct tnode *r){
-	if(r != NULL){
-		tprint(r->l);
-		printf("%d\n", r->v);
-		tprint(r->r);
-	}
 }
 
 void tinsert(struct tnode **R, struct tnode *n){
@@ -68,7 +68,7 @@ struct tnode* search(struct tnode *R, int v){
 	return NULL;
 }
 
-void avl(struct tnode *R, int w){
+/*void avl(struct tnode *R, int w){
 	v = w.p;
 	while(v != ){
 		
@@ -90,6 +90,23 @@ void rd(struct tnode * x){
 		else
 			y->p->d = y;
 	}
+}*/
+
+int tamanhoArvore(struct tnode *r){
+	if(r != NULL)
+		return (tamanhoArvore(r->l) + 1 + tamanhoArvore(r->r));
+	return 0; 
 }
 
+void tprint(struct tnode *r){
+	if(r != NULL){
+		tprint(r->l);
+		printf("%d ", r->v);
+		tprint(r->r);
+	}
+}
 
+void preencherArvore(struct tnode **R){
+	for(int i = 1; i <= tamanho; i++)
+		tinsert(R, new_tnode(i));
+}
