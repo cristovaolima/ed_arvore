@@ -16,6 +16,8 @@ struct tnode* search(struct tnode *R, int v);
 void rd(struct tnode * x);
 int tamanhoArvore(struct tnode *r);
 void preencherArvore(struct tnode **R);
+int max(int a, int b);
+int min(int a, int b);
 
 struct tnode{
 	int v;
@@ -109,4 +111,16 @@ void tprint(struct tnode *r){
 void preencherArvore(struct tnode **R){
 	for(int i = 1; i <= tamanho; i++)
 		tinsert(R, new_tnode(i));
+}
+
+int max(int a, int b){
+	if(a > b)
+		return a;
+	return b;
+}
+
+int min(int a, int b){
+	if(a < b)
+		return a;
+	return b;
 }
